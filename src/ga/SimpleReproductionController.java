@@ -63,7 +63,7 @@ public class SimpleReproductionController implements IReproductionController {
 		int[] genes2 = parent2.getGenes();
 		int[] newGenes = new int[genes1.length];
 		
-		//here there be dragons
+
 		if(parent1.numGenesDivisibleBy(2) && parent2.numGenesDivisibleBy(2))
 		{
 			int currentPosition=0;

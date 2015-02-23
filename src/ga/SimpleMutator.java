@@ -18,6 +18,9 @@ public class SimpleMutator implements IMutator {
 	@Override
 	public IGenome mutate(IGenome original) {
  
+		//hack!
+		return original;
+		/*
 		int[] genes = original.getGenes();
 		int[] newGenes = new int[genes.length];
 		
@@ -31,7 +34,7 @@ public class SimpleMutator implements IMutator {
 		}
 		
 		return new SimpleGenome(newGenes);
-		
+		*/
 	}
 	
 	

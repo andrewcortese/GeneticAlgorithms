@@ -64,5 +64,15 @@ public class SimpleGenome implements IGenome {
 	{
 		return ((this.getNumGenes() % factor) == 0);
 	}
+	
+	public String toString()
+	{
+		String s = new String();
+		for(int i : this.getGenes())
+		{
+			s += (i + " ");
+		}
+		return s;
+	}
 
 }

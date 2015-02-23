@@ -11,10 +11,10 @@ public class SimpleFitnessSelector implements IFitnessSelector {
 		int sum = 0;
 		for(int gene : genes)
 		{
-			sum += gene;
+			sum+=gene;
 		}
 		
-		if(sum %2 == 0)
+		if(sum > 5)
 		{
 			return true;
 		}
