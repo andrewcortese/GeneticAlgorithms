@@ -9,9 +9,23 @@ public class SimpleIndividual implements IIndividual {
 		this.genome = genome;
 	}
 	
+	/**
+	 * generates a SimpleIndividual with a random genome
+	 */
+	public SimpleIndividual()
+	{
+		
+	}
+	
 	public IGenome getGenome()
 	{
 		return this.genome;
 	}
+	
+	public String toString()
+	{
+		return this.getGenome().toString();
+	}
+	
 	
 }

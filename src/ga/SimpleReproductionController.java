@@ -59,8 +59,8 @@ public class SimpleReproductionController implements IReproductionController {
 	
 	private IGenome twoParents(IGenome parent1, IGenome parent2)
 	{
-		int[] genes1 = parent1.getGenes();
-		int[] genes2 = parent2.getGenes();
+		int[] genes1 = parent1.getGeneIntegerValues();
+		int[] genes2 = parent2.getGeneIntegerValues();
 		int[] newGenes = new int[genes1.length];
 		
 
@@ -85,16 +85,16 @@ public class SimpleReproductionController implements IReproductionController {
 			
 		}
 		
-		IGenome offspring = new SimpleGenome(newGenes);
+		IGenome offspring = new SingleValueIntegerGenome(newGenes);
 		return this.mutator.mutate(offspring);
 	}
 	
 	
 	private IGenome threeParents(IGenome parent1, IGenome parent2, IGenome parent3)
 	{
-		int[] genes1 = parent1.getGenes();
-		int[] genes2 = parent2.getGenes();
-		int[] genes3 = parent3.getGenes();
+		int[] genes1 = parent1.getGeneIntegerValues();
+		int[] genes2 = parent2.getGeneIntegerValues();
+		int[] genes3 = parent3.getGeneIntegerValues();
 		
 		int[] newGenes = new int[genes1.length];
 		
@@ -130,7 +130,7 @@ public class SimpleReproductionController implements IReproductionController {
 			
 		}
 		
-		IGenome offspring = new SimpleGenome(newGenes);
+		IGenome offspring = new SingleValueIntegerGenome(newGenes);
 		return this.mutator.mutate(offspring);
 	}
 

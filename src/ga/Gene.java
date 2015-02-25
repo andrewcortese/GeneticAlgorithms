@@ -49,7 +49,10 @@ public class Gene implements IGene {
 		}
 	}
 	
-	
+	public Object getGeneticInformation()
+	{
+		return (Object)(new Integer(this.getPrimaryValue()));
+	}
 	
 	
 	

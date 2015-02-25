@@ -25,38 +25,28 @@ public class Main {
 		IFitnessSelector selector = new SimpleFitnessSelector();
 		
 		//construct population 1 with random genes
-		ArrayList<IIndividual> population = new ArrayList<IIndividual>();
+		IPopulation population = new Population(numGenes);
 		for(int i=0; i<populationSize; i++)
 		{
-			population.add(new SimpleIndividual(new SimpleGenome(randomGenome(numGenes))));
+			population.add(new SimpleIndividual(new SingleValueIntegerGenome(randomGenome(numGenes))));
 		}
 		
 		//construct population 2 with identical genes to population 1
 		//i.e. individual 1 in pop1 has the same starting genes as individual 1 in pop2.
-		ArrayList<IIndividual> population2 = new ArrayList<IIndividual>();
-		for(IIndividual i : population)
-		{
-			int[] genes = new int[numGenes];
-			System.arraycopy(i.getGenome().getGenes(), 0, genes, 0, numGenes);
-			population2.add(new SimpleIndividual(new SimpleGenome(genes)));
-		}
+		IPopulation population2 = population.clone();
 		
 		
-		
-		//initial print
-		for(IIndividual i: population)
-		{
-			System.out.println(i.getGenome().toString());
-		}
+		//print our starting population
+		System.out.println(population.toString());
 		
 		
 		//reproduce pop1 using two-parent recombination
 		for(int i=0; i<numGenerations; i++)
 		{
-			ArrayList<IIndividual> offspring = new ArrayList<IIndividual>();
-			while(offspring.size() < populationSize)
+			IPopulation offspring = new Population(((Population)population).getNumGenesPerIndividual());
+			while(offspring.count() < populationSize)
 			{
-				System.out.println(offspring.size() + "/" + populationSize);
+				//System.out.println(offspring.count() + "/" + populationSize);
 				Random r = new Random();
 				int index1 = -1;
 				int index2 = -1;
@@ -106,10 +96,7 @@ public class Main {
 		
 		
 		//print
-		for(IIndividual i: population)
-		{
-			System.out.println(i.getGenome().toString());
-		}
+		System.out.println(population.toString());
 		
 	}
 
@@ -125,4 +112,6 @@ public class Main {
 		}
 		return genes;
 	}
+	
+	
 }

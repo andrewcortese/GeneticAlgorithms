@@ -3,8 +3,9 @@ package ga;
 
 public interface IGenome {
 
-	public int[] getGenes();
-	public int getNumGenes();
+	public IGene get(int index);
+	public int[] getGeneIntegerValues();
+	public int size();
 	public boolean numGenesDivisibleBy(int factor);
 	
 	
