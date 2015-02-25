@@ -84,7 +84,7 @@ public class Population implements IPopulation {
 		{
 			int[] genes = new int[numGenes];
 			System.arraycopy(i.getGenome().getGeneIntegerValues(), 0, genes, 0, numGenes);
-			population2.add(new SimpleIndividual(new SingleValueIntegerGenome(genes)));
+			population2.add(new SimpleIndividual(new Genome(genes)));
 		}
 		
 		return population2;

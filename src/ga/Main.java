@@ -15,10 +15,11 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		final int populationSize = 144;
+		final int populationSize = 36;
 		final int numGenes = 6;
 		final int numGenerations = 50;
 		
+		ITwoOneCrossoverController crossoverController = new TwoOneCrossover();
 		IMutator mutator = new SimpleMutator();
 		SimpleReproductionController recombinator = new SimpleReproductionController(mutator);
 		
@@ -28,7 +29,7 @@ public class Main {
 		IPopulation population = new Population(numGenes);
 		for(int i=0; i<populationSize; i++)
 		{
-			population.add(new SimpleIndividual(new SingleValueIntegerGenome(randomGenome(numGenes))));
+			population.add(new SimpleIndividual(new Genome(randomGenome(numGenes))));
 		}
 		
 		//construct population 2 with identical genes to population 1
@@ -43,7 +44,7 @@ public class Main {
 		//reproduce pop1 using two-parent recombination
 		for(int i=0; i<numGenerations; i++)
 		{
-			IPopulation offspring = new Population(((Population)population).getNumGenesPerIndividual());
+			IPopulation offspring = new Population(numGenes);
 			while(offspring.count() < populationSize)
 			{
 				//System.out.println(offspring.count() + "/" + populationSize);
@@ -76,16 +77,24 @@ public class Main {
 				}
 				
 				//reproduce
+				/*
 				IGenome[] parents = new IGenome[2];
 				parents[0] = population.get(index1).getGenome();
 				parents[1] = population.get(index2).getGenome();
 				IGenome[] offsprings = recombinator.reproduce(parents);
-				
-				offspring.add(new SimpleIndividual(offsprings[0]));
+				*/
 			
+				IGenome parent1 = population.get(index1).getGenome();
+				IGenome parent2 = population.get(index2).getGenome();
+				IGenome child = new Genome();
+				child = crossoverController.crossover(parent1, parent2, child);
+				offspring.add(new SimpleIndividual(child));
+				
+
 			}
 			
 			population = offspring;
+			
 		}
 		
 		

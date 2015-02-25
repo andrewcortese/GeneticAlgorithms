@@ -18,5 +18,11 @@ public class SingleValueIntegerGene implements IGene {
 	public void setGeneticInformation(Object newGeneticInformation) {
 		this.value = (Integer)newGeneticInformation;
 	}
+	
+	public IGene clone()
+	{
+		IGene clone = new SingleValueIntegerGene(this.value);
+		return clone;
+	}
 
 }

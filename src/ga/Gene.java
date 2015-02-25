@@ -1,6 +1,6 @@
 package ga;
 
-public class Gene implements IGene {
+public class Gene{
 
 	int[] values;
 	

@@ -85,7 +85,7 @@ public class SimpleReproductionController implements IReproductionController {
 			
 		}
 		
-		IGenome offspring = new SingleValueIntegerGenome(newGenes);
+		IGenome offspring = new Genome(newGenes);
 		return this.mutator.mutate(offspring);
 	}
 	
@@ -130,7 +130,7 @@ public class SimpleReproductionController implements IReproductionController {
 			
 		}
 		
-		IGenome offspring = new SingleValueIntegerGenome(newGenes);
+		IGenome offspring = new Genome(newGenes);
 		return this.mutator.mutate(offspring);
 	}
 

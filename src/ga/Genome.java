@@ -8,20 +8,27 @@ package ga;
  *
  */
 import java.util.*;
-public class SingleValueIntegerGenome implements IGenome {
+public class Genome implements IGenome{
 	
 	
 	private ArrayList<IGene> genes;
 	private int size = 0;
 	
-	public SingleValueIntegerGenome(int numGenes)
+	
+	public Genome(IGene[] genes)
 	{
-		this.genes = new ArrayList<IGene>();
-		
-		this.size = numGenes;
+		this.setGenes(genes);
 	}
 	
-	public SingleValueIntegerGenome(int[] values)
+	public Genome()
+	{
+		this.genes = new ArrayList<IGene>();
+		this.size = 0;
+	}
+	
+
+	//TODO: move to subclass
+	public Genome(int[] values)
 	{
 		this.genes = new ArrayList<IGene>();
 		for(int i : values)
@@ -32,27 +39,45 @@ public class SingleValueIntegerGenome implements IGenome {
 		this.size = this.genes.size();
 	}
 	
-
+	public IGene[] getGenes()
+	{
+		IGene[] genes = new IGene[this.size];
+		for(int i=0; i<size; i++)
+		{
+			genes[i] = this.genes.get(i).clone();
+		}
+		return genes;
+	}
+	
+	public void setGenes(IGene[] genes)
+	{
+		this.genes = new ArrayList<IGene>();
+		this.size = genes.length;
+		for(IGene g : genes)
+		{
+			this.genes.add(g);
+		}
+	}
+	
+	//TODO: move to subclass
 	public int[] getGeneIntegerValues()
 	{
 		int[] values = new int[this.size()];
 		for(int i=0; i<values.length; i++)
 		{
-			values[i] = ((Integer)this.get(i).getGeneticInformation());
+			values[i] = ((Integer)this.genes.get(i).getGeneticInformation());
 		}
 		return values;
 	}
 	
-	public IGene get(int index)
-	{
-		return genes.get(index);
-	}
+	
 	
 	public int size()
 	{
 		return this.size;
 	}
 
+	
 	public boolean numGenesDivisibleBy(int factor)
 	{
 		return ((this.size() % factor) == 0);
