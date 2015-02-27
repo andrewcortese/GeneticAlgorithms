@@ -7,15 +7,10 @@ public class RandomCrossover implements ICrossover {
 	
 	@Override
 	public IGenome crossover(IGenome[] parents, IGenomeFactory childFactory) {
+
 		int numGenes;
 		
-		
-		if(parents == null || parents.length == 0)
-		{
-			throw new GAException("no parents");
-		}
-		
-		
+		//validate
 		if(matchValidator.canCrossover(parents))
 		{
 			numGenes = parents[0].size();
@@ -25,19 +20,15 @@ public class RandomCrossover implements ICrossover {
 			throw new SpeciesMismatchException();
 		}
 		
-		
-		//get the arrays of genes
+		//perform crossover
 		IGene[] childGenes = new IGene[numGenes];
-		
-		
-		//copy child genes
 		for(int i=0; i<numGenes; i++)
 		{
 			int parent = (new Random()).nextInt(parents.length);
 			childGenes[i] = parents[parent].getGenes()[i];
 		}
 		
-		
+		//construct and return
 		IGenome child = childFactory.construct(childGenes);
 		return child;
 	}
