@@ -27,22 +27,23 @@ public class TwoOneCrossover implements ITwoOneCrossoverController {
 		IGene[] parent2Genes = parent2.getGenes();
 		
 		
-		if(numGenes % 2 == 0)
+		
+		for(int i=0; i<numGenes; i++)
 		{
-		 for(int i=0; i<numGenes/2; i++)
-		 {
-			 childGenes[i] = parent1Genes[i];
-		 }
-		 for(int j=numGenes/2; j<numGenes; j++)
-		 {
-			 childGenes[j] = parent2Genes[j];
-		 }
+			if(randomChance.rollDie(2) == 0)
+			{
+				childGenes[i] = parent1Genes[i];
+			}
+			else
+			{
+				childGenes[i] = parent2Genes[i];
+			}
 		}
 		
-		return childFactory.construct(childGenes);
+		
+		IGenome child = childFactory.construct(childGenes);
+		return child;
 	}
-	
-	
 	
 }
 

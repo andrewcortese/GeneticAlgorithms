@@ -15,12 +15,13 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		final int populationSize = 36;
+		final int populationSize = 72;
 		final int numGenes = 6;
 		final int numGenerations = 50;
 		
 		
-		ITwoOneCrossoverController crossoverController = new TwoOneCrossover();
+		//ITwoOneCrossoverController crossoverController = new TwoOneCrossover();
+		ICrossover crossoverController = new RandomCrossover();
 		IMutator mutator = new SimpleMutator();
 		SimpleReproductionController recombinator = new SimpleReproductionController(mutator);
 		
@@ -95,8 +96,10 @@ public class Main {
 			
 				IGenome parent1 = population.get(index1).getGenome();
 				IGenome parent2 = population.get(index2).getGenome();
-				IGenome child = new Genome();
-				child = crossoverController.crossover(parent1, parent2, genomeFactory);
+				
+				IGenome[] parents = {parent1, parent2};
+				
+				IGenome child = crossoverController.crossover(parents, genomeFactory);
 				offspring.add(new SimpleIndividual(child));
 				
 
