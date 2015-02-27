@@ -33,7 +33,7 @@ public class Genome implements IGenome{
 		this.genes = new ArrayList<IGene>();
 		for(int i : values)
 		{
-			this.genes.add(new SingleValueIntegerGene(i));
+			this.genes.add(new SingleIntegerGene(i));
 		}
 	
 		this.size = this.genes.size();

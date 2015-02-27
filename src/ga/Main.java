@@ -27,6 +27,9 @@ public class Main {
 		//specifies the implementation version for IGenome
 		IGenomeFactory genomeFactory = new GenomeFactory();
 		
+		//specifies the implemntation version for IGene
+		IGeneFactory geneFactory = new SingleIntegerGeneFactory();
+		
 		
 		IFitnessSelector selector = new SimpleFitnessSelector();
 		
@@ -34,8 +37,9 @@ public class Main {
 		IPopulation population = new Population(numGenes);
 		for(int i=0; i<populationSize; i++)
 		{
-			population.add(new SimpleIndividual(genomeFactory.construct(randomGenome(numGenes))));
+			population.add(new SimpleIndividual(genomeFactory.constructRandom(geneFactory, numGenes)));
 		}
+		
 		
 		//construct population 2 with identical genes to population 1
 		//i.e. individual 1 in pop1 has the same starting genes as individual 1 in pop2.
@@ -116,17 +120,6 @@ public class Main {
 
 
 	
-	static IGene[] randomGenome(int numGenes)
-	{
-		int[] geneVals = new int[numGenes];
-		IGene[] genes = new IGene[numGenes];
-		for(int i=0; i<numGenes; i++)
-		{
-			int val = (int)(Math.random()*10);
-			genes[i] = new SingleValueIntegerGene(val);
-		}
-		return genes;
-	}
-	
+
 	
 }
