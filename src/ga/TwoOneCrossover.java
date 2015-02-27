@@ -6,25 +6,27 @@ public class TwoOneCrossover implements ITwoOneCrossoverController {
 	private IMatchValidator matchValidator = new MatchValidator();
 	
 	@Override
-	public IGenome crossover(IGenome parent1, IGenome parent2, IGenome child) {
+	public IGenome crossover(IGenome parent1, IGenome parent2, IGenomeFactory childFactory) {
 				
 		int numGenes;
 	
-		if(parent1.size() != parent2.size() ||
-		   false == parent1.getClass().equals(parent2.getClass()) ||
-		   false == parent1.getClass().equals(parent2.getClass()))
-		{
-			throw new SpeciesMismatchException();
-		}
-		else
+		IGenome[] parents = {parent1, parent2};
+		if(matchValidator.canCrossover(parents))
 		{
 			numGenes = parent1.size();
 		}
+		else
+		{
+			throw new SpeciesMismatchException();
+		}
 		
 		
+		//get the arrays of genes
 		IGene[] childGenes = new IGene[numGenes];
 		IGene[] parent1Genes = parent1.getGenes();
 		IGene[] parent2Genes = parent2.getGenes();
+		
+		
 		if(numGenes % 2 == 0)
 		{
 		 for(int i=0; i<numGenes/2; i++)
@@ -37,24 +39,11 @@ public class TwoOneCrossover implements ITwoOneCrossoverController {
 		 }
 		}
 		
-		child = new Genome(childGenes);
-		return child;
+		return childFactory.construct(childGenes);
 	}
 	
 	
-	private IGenome halfwaySplit(IGenome genome1, IGenome genome2)
-	{
-		
-		if(randomChance.rollDie(2) == 1)		
-		{
-			
-			return null;
-		}
-		else
-		{
-			
-			return null;
-		}
-	}
-
+	
 }
+
+

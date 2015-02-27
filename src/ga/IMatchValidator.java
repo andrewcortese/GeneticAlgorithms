@@ -2,6 +2,6 @@ package ga;
 
 public interface IMatchValidator {
 
-	public boolean canCrossover(IIndividual[] parents);
+	public boolean canCrossover(IGenome[] parents);
 	
 }

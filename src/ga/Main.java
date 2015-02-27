@@ -19,9 +19,14 @@ public class Main {
 		final int numGenes = 6;
 		final int numGenerations = 50;
 		
+		
 		ITwoOneCrossoverController crossoverController = new TwoOneCrossover();
 		IMutator mutator = new SimpleMutator();
 		SimpleReproductionController recombinator = new SimpleReproductionController(mutator);
+		
+		//specifies the implementation version for IGenome
+		IGenomeFactory genomeFactory = new GenomeFactory();
+		
 		
 		IFitnessSelector selector = new SimpleFitnessSelector();
 		
@@ -29,7 +34,7 @@ public class Main {
 		IPopulation population = new Population(numGenes);
 		for(int i=0; i<populationSize; i++)
 		{
-			population.add(new SimpleIndividual(new Genome(randomGenome(numGenes))));
+			population.add(new SimpleIndividual(genomeFactory.construct(randomGenome(numGenes))));
 		}
 		
 		//construct population 2 with identical genes to population 1
@@ -87,7 +92,7 @@ public class Main {
 				IGenome parent1 = population.get(index1).getGenome();
 				IGenome parent2 = population.get(index2).getGenome();
 				IGenome child = new Genome();
-				child = crossoverController.crossover(parent1, parent2, child);
+				child = crossoverController.crossover(parent1, parent2, genomeFactory);
 				offspring.add(new SimpleIndividual(child));
 				
 
@@ -111,13 +116,14 @@ public class Main {
 
 
 	
-	static int[] randomGenome(int numGenes)
+	static IGene[] randomGenome(int numGenes)
 	{
-		int[] genes = new int[numGenes];
+		int[] geneVals = new int[numGenes];
+		IGene[] genes = new IGene[numGenes];
 		for(int i=0; i<numGenes; i++)
 		{
 			int val = (int)(Math.random()*10);
-			genes[i] = val;
+			genes[i] = new SingleValueIntegerGene(val);
 		}
 		return genes;
 	}

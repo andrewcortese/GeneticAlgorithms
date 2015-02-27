@@ -2,12 +2,29 @@ package ga;
 
 public class SingleValueIntegerGene implements IGene {
 
+	//FIELDS
 	private int value;
 
+	
+	//CONSTRUCTORS
 	public SingleValueIntegerGene(int value)
 	{
 		this.value = value;
 	}
+	
+	
+	public SingleValueIntegerGene()
+	{
+		
+	}
+	
+	//METHODS
+	
+	
+	
+	
+	
+	//INHERITED METHODS FROM IGene
 	
 	@Override
 	public Object getGeneticInformation() {
@@ -19,6 +36,7 @@ public class SingleValueIntegerGene implements IGene {
 		this.value = (Integer)newGeneticInformation;
 	}
 	
+	@Override
 	public IGene clone()
 	{
 		IGene clone = new SingleValueIntegerGene(this.value);
