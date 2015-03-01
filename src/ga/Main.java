@@ -85,14 +85,7 @@ public class Main {
 					}
 					
 				}
-				
-				//reproduce
-				/*
-				IGenome[] parents = new IGenome[2];
-				parents[0] = population.get(index1).getGenome();
-				parents[1] = population.get(index2).getGenome();
-				IGenome[] offsprings = recombinator.reproduce(parents);
-				*/
+
 			
 				IGenome parent1 = population.get(index1).getGenome();
 				IGenome parent2 = population.get(index2).getGenome();
