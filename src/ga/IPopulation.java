@@ -7,7 +7,7 @@ interface IPopulation {
 	public IIndividual get(int index);
 	public void add(IIndividual newIndividual);
 	public int count();
-	public Iterator<IIndividual> getIterator();
+	public Iterator<IIndividual> iterator();
 	public IPopulation clone();
 
 }

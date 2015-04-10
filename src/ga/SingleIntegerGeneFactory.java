@@ -6,7 +6,7 @@ public class SingleIntegerGeneFactory implements IGeneFactory {
 	public IGene construct(Object geneticInformation) {
 		
 		int value = -1;
-		if(Object.class.equals(Integer.class))
+		if(geneticInformation.getClass().equals(Integer.class))
 		{
 			value = (Integer)geneticInformation;
 			

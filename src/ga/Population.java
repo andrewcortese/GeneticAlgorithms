@@ -62,7 +62,7 @@ public class Population implements IPopulation {
 	}
 
 	@Override
-	public Iterator<IIndividual> getIterator() {
+	public Iterator<IIndividual> iterator() {
 		Iterator<IIndividual> iterator = members.iterator();
 		return iterator;
 	}
@@ -79,7 +79,7 @@ public class Population implements IPopulation {
 	{
 		int numGenes = this.getNumGenesPerIndividual();
 		IPopulation population2 = new Population(numGenes);
-		Iterator<IIndividual> iterator = this.getIterator();
+		Iterator<IIndividual> iterator = this.iterator();
 		for(IIndividual i = iterator.next(); iterator.hasNext(); i = iterator.next())
 		{
 			int[] genes = new int[numGenes];
@@ -94,7 +94,7 @@ public class Population implements IPopulation {
 	public String toString()
 	{
 		String populationString = new String();
-		Iterator<IIndividual> iterator = this.getIterator();
+		Iterator<IIndividual> iterator = this.iterator();
 		while(iterator.hasNext())
 		{
 			IIndividual i = iterator.next();
